@@ -14,25 +14,21 @@ function Home() {
 
     fetchPosts();
   }, []);
-  
+
   return (
     <div>
       <h1>Home Page</h1>
 
-      {posts.map((post) => {
-        return (
-          <div key={post.id}>
-            <Link to={`/post/${post.id}`} >{post.title}</Link>
-            <p>{post.body}</p>
-          </div>
-        );
-      })}
+      {posts.map((post) => (
+        <div key={post.id}>
+          <h2>
+            <Link to={`/post/${post.id}`}>{post.title}</Link>
+          </h2>
+          <p>{post.body}</p>
+        </div>
+      ))}
     </div>
-  )
-
-
-
-  return <h1>Home Page</h1>;
+  );
 }
 
 function About() {
@@ -40,20 +36,40 @@ function About() {
 }
 
 function PostDetails() {
-  const  { id } = useParams();
+  const { id } = useParams();
+  const [post, setPost] = useState(null);
+
+  useEffect(() => {
+    async function fetchSinglePost() {
+      const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
+      const data = await response.json();
+
+      setPost(data);
+    }
+
+    fetchSinglePost();
+  }, [id]);
+
+
+  if (post === null) {
+    return <h2>Loading...</h2>;
+  }
 
   return (
     <div>
       <h1>Post Details Page</h1>
-      <h2>Post ID: {id}</h2>
+      <h2>{post.title}</h2>
+      <p>{post.body}</p>
+      <p>Post ID: {post.id}</p>
     </div>
-  )
+  );
+
 }
 
 function App() {
   return (
     <BrowserRouter>
-    {/* navigation here */}
+      {/* navigation here */}
       <nav>
         <Link to="/">Home</Link> |{" "}
         <Link to="/about">About</Link> |{" "}
