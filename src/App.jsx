@@ -3,23 +3,60 @@ import { BrowserRouter, Routes, Route, Link, useParams } from "react-router-dom"
 
 function Home() {
   const [posts, setPosts] = useState([]);
+  const [search, setSearch] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     async function fetchPosts() {
-      const response = await fetch("https://jsonplaceholder.typicode.com/posts");
-      const data = await response.json();
+      try {
+        setLoading(true);
+        setError("");
 
-      setPosts(data);
+        const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch posts");
+        }
+
+        const data = await response.json();
+        setPosts(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
     }
 
     fetchPosts();
   }, []);
 
+  const filteredPosts = posts.filter((post) =>
+    post.title.toLowerCase().includes(search.toLowerCase())
+  );
+
+  if (loading) {
+    return <h2>Loading posts...</h2>;
+  }
+
+  if (error) {
+    return <h2>{error}</h2>;
+  }
+
   return (
     <div>
       <h1>Home Page</h1>
 
-      {posts.map((post) => (
+      <input
+        type="text"
+        placeholder="Search posts..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+
+      {filteredPosts.length === 0 && <p>No posts found</p>}
+
+      {filteredPosts.map((post) => (
         <div key={post.id}>
           <h2>
             <Link to={`/post/${post.id}`}>{post.title}</Link>
@@ -38,21 +75,41 @@ function About() {
 function PostDetails() {
   const { id } = useParams();
   const [post, setPost] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     async function fetchSinglePost() {
-      const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
-      const data = await response.json();
+      try {
+        setLoading(true);
+        setError("");
 
-      setPost(data);
+        const response = await fetch(
+          `https://jsonplaceholder.typicode.com/posts/${id}`
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch post");
+        }
+
+        const data = await response.json();
+        setPost(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
     }
 
     fetchSinglePost();
   }, [id]);
 
+  if (loading) {
+    return <h2>Loading post...</h2>;
+  }
 
-  if (post === null) {
-    return <h2>Loading...</h2>;
+  if (error) {
+    return <h2>{error}</h2>;
   }
 
   return (
@@ -61,9 +118,10 @@ function PostDetails() {
       <h2>{post.title}</h2>
       <p>{post.body}</p>
       <p>Post ID: {post.id}</p>
+
+      <Link to="/">Back to Home</Link>
     </div>
   );
-
 }
 
 function App() {
