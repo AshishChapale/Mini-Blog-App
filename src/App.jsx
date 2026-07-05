@@ -1,5 +1,6 @@
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import PostDetails from "./pages/PostDetails";
@@ -7,12 +8,7 @@ import PostDetails from "./pages/PostDetails";
 function App() {
   return (
     <BrowserRouter>
-      <nav>
-        <Link to="/">Home</Link> |{" "}
-        <Link to="/about">About</Link> |{" "}
-        <Link to="/post/1">Post 1</Link> |{" "}
-        <Link to="/post/2">Post 2</Link>
-      </nav>
+      <Navbar />
 
       <Routes>
         <Route path="/" element={<Home />} />
