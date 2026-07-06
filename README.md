@@ -1,16 +1,30 @@
-# React + Vite
+# Mini Vlog App
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A React mini blog/vlog-style app built with React Router and API fetching.  
+Users can view posts, search posts by title, and open a single post details page.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Home page with all posts
+- Search posts by title
+- Dynamic post details page
+- React Router navigation
+- Loading and error handling
+- Component-based structure
+- Responsive basic styling
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React
+- Vite
+- React Router DOM
+- JavaScript
+- CSS
+- JSONPlaceholder API
 
-## Expanding the Oxlint configuration
+## API Used
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+Posts are fetched from:
+
+- JSONPlaceholder API:
+https://jsonplaceholder.typicode.com/posts
