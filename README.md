@@ -1,4 +1,4 @@
-# Mini Vlog App
+# Mini Blog App
 
 A React mini blog/vlog-style app built with React Router and API fetching.  
 Users can view posts, search posts by title, and open a single post details page.
