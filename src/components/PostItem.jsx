@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function PostItem({ post }) {
   return (
-    <div>
+    <div className="post-card">
       <h2>
         <Link to={`/post/${post.id}`}>{post.title}</Link>
       </h2>

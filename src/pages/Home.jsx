@@ -31,10 +31,10 @@ function Home() {
 
     fetchPosts();
   }, []);
-    const filteredPosts = posts.filter((post) =>
+  const filteredPosts = posts.filter((post) =>
     post.title.toLowerCase().includes(search.toLowerCase())
   );
- <PostList posts={filteredPosts} />
+  <PostList posts={filteredPosts} />
 
   if (loading) {
     return <h2>Loading posts...</h2>;
@@ -44,27 +44,21 @@ function Home() {
     return <h2>{error}</h2>;
   }
 
+
   return (
-    <div>
-      <h1>Home Page</h1>
+    <div className="container">
+      <h1>All Posts</h1>
 
       <input
+        className="search-input"
         type="text"
         placeholder="Search posts..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
 
-      {filteredPosts.length === 0 && <p>No posts found</p>}
+      {filteredPosts.length === 0 && <p className="message">No posts found</p>}
 
-      {/* {filteredPosts.map((post) => (
-        <div key={post.id}>
-          <h2>
-            <Link to={`/post/${post.id}`}>{post.title}</Link>
-          </h2>
-          <p>{post.body}</p>
-        </div>
-      ))} */}
       <PostList posts={filteredPosts} />
     </div>
   );

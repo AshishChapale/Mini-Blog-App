@@ -42,13 +42,17 @@ function PostDetails() {
   }
 
   return (
-    <div>
-      <h1>Post Details Page</h1>
-      <h2>{post.title}</h2>
-      <p>{post.body}</p>
-      <p>Post ID: {post.id}</p>
+    <div className="container">
+      <div className="details-card">
+        <h1>Post Details</h1>
+        <h2>{post.title}</h2>
+        <p>{post.body}</p>
+        <p className="post-id">Post ID: {post.id}</p>
 
-      <Link to="/">Back to Home</Link>
+        <Link className="back-link" to="/">
+          Back to Home
+        </Link>
+      </div>
     </div>
   );
 }
