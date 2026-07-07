@@ -24,11 +24,11 @@ body {
 
 .nav-links {
   display: flex;
-  gap: 20px;
+  gap: 22px;
 }
 
 .nav-links a {
-  color: white;
+  color: grey;
   text-decoration: none;
   font-weight: bold;
 }
@@ -38,14 +38,14 @@ body {
 }
 
 .container {
-  max-width: 900px;
+  max-width: 910px;
   margin: 30px auto;
   padding: 0 20px;
 }
 
 .container h1 {
   text-align: center;
-  margin-bottom: 25px;
+  margin-bottom: 24px;
 }
 
 .search-input {
