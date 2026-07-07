@@ -45,14 +45,9 @@ src/
   App.css
 ```
 
-## How to Run Locally
+## Live Demo
 
-```bash
-git clone https://github.com/AshishChapale/Mini-Vlog-App.git
-cd Mini-Vlog-App
-npm install
-npm run dev
-```
+https://mini-blog-81br14iet-ashishchapale8076-6920s-projects.vercel.app
 
 ## Learning Concepts Practiced
 
